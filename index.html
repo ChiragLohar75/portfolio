@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirag Lohar — Lead Software Engineer</title>
+<meta name="description" content="Chirag Lohar — Lead Software Engineer at KStar. Full-stack products with Laravel, React, Next.js, AWS and applied AI. 8+ years building for clients worldwide.">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --ink: #15171f;
+    --muted: #5d6272;
+    --line: #dedad0;
+    --accent: #c2410c;
+    --accent-soft: #fbe9dd;
+    --chip: #efece4;
+    --shadow: 0 1px 2px rgba(20, 22, 30, .05), 0 12px 32px -18px rgba(20, 22, 30, .25);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1116;
+    --surface: #171a22;
+    --ink: #eceae4;
+    --muted: #9a9fae;
+    --line: #272b37;
+    --accent: #fb8a4c;
+    --accent-soft: #2a1c14;
+    --chip: #1f232e;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 36px -20px rgba(0, 0, 0, .8);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1116;
+      --surface: #171a22;
+      --ink: #eceae4;
+      --muted: #9a9fae;
+      --line: #272b37;
+      --accent: #fb8a4c;
+      --accent-soft: #2a1c14;
+      --chip: #1f232e;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 36px -20px rgba(0, 0, 0, .8);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .mono { font-family: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { font-weight: 700; letter-spacing: -.01em; text-decoration: none; }
+  .brand span { color: var(--accent); }
+  .nav nav { display: flex; align-items: center; gap: 22px; }
+  .nav nav a { text-decoration: none; color: var(--muted); font-size: 14px; }
+  .nav nav a:hover { color: var(--ink); }
+  .theme {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 15px; line-height: 1;
+  }
+  @media (max-width: 720px) { .nav nav a { display: none; } }
+
+  /* hero */
+  .hero { padding: 88px 0 64px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #22a35a; box-shadow: 0 0 0 4px color-mix(in srgb, #22a35a 22%, transparent); }
+  h1 {
+    font-size: clamp(42px, 8.4vw, 92px);
+    line-height: .98; letter-spacing: -.035em; font-weight: 800;
+    margin: 22px 0 22px;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: clamp(17px, 2.1vw, 21px); color: var(--muted); max-width: 720px; margin: 0 0 32px; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 999px; text-decoration: none;
+    font-weight: 600; font-size: 15px; border: 1px solid var(--ink);
+    transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn.ghost { border-color: var(--line); background: var(--surface); }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    margin-top: 64px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); overflow: hidden;
+  }
+  .stat { padding: 22px 24px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: 0; }
+  .stat b { display: block; font-size: 34px; letter-spacing: -.03em; line-height: 1.1; }
+  .stat span { font-size: 13.5px; color: var(--muted); }
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+
+  /* sections */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .head .num { color: var(--accent); font-size: 13px; }
+  h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.025em; line-height: 1.1; margin: 0; }
+  .sub { color: var(--muted); max-width: 680px; margin: -20px 0 36px; }
+
+  /* about */
+  .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  .about p { margin: 0 0 16px; font-size: 17px; }
+  .about p.dim { color: var(--muted); }
+  .facts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .facts li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .facts li span:first-child { color: var(--muted); }
+  .facts li span:last-child { text-align: right; font-weight: 600; }
+  @media (max-width: 820px) { .about { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* work */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 28px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .card.wide { grid-column: 1 / -1; }
+  .tag { font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .card h3 { margin: 0 0 10px; font-size: 22px; letter-spacing: -.02em; line-height: 1.25; }
+  .card p { margin: 0 0 14px; color: var(--muted); }
+  .card ul { margin: 0 0 18px; padding-left: 18px; color: var(--muted); }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+  .card li strong, .card p strong { color: var(--ink); font-weight: 600; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+  @media (max-width: 820px) { .cols { grid-template-columns: 1fr; } }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+  .chip { background: var(--chip); border-radius: 999px; padding: 4px 11px; font-size: 12.5px; color: var(--ink); }
+  .link { margin-top: 16px; font-weight: 600; font-size: 14.5px; color: var(--accent); text-decoration: none; }
+  .link:hover { text-decoration: underline; }
+  .metrics { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 4px 0 18px; }
+  .metrics div b { font-size: 24px; letter-spacing: -.02em; display: block; line-height: 1.2; }
+  .metrics div span { font-size: 12.5px; color: var(--muted); }
+
+  /* experience */
+  .job { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--line); }
+  .job:first-of-type { padding-top: 0; }
+  .job:last-of-type { border-bottom: 0; padding-bottom: 0; }
+  .when { font-size: 13px; color: var(--muted); padding-top: 5px; }
+  .when .now { display: inline-block; margin-top: 8px; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 2px 10px; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
+  .job h3 { margin: 0; font-size: 21px; letter-spacing: -.02em; }
+  .job .org { color: var(--muted); margin: 2px 0 14px; }
+  .job ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .job li { margin-bottom: 7px; }
+  .job li::marker { color: var(--accent); }
+  .job li strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 720px) { .job { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 820px) { .skills { grid-template-columns: 1fr; } }
+  .skill { border: 1px solid var(--line); border-radius: 16px; padding: 22px; background: var(--surface); }
+  .skill h3 { margin: 0 0 12px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .skill .chips { margin: 0; }
+
+  /* contact */
+  .contact { text-align: center; padding: 96px 0; }
+  .contact h2 { font-size: clamp(34px, 6vw, 64px); letter-spacing: -.035em; margin-bottom: 18px; }
+  .contact p { color: var(--muted); max-width: 560px; margin: 0 auto 30px; font-size: 17px; }
+  .contact .cta { justify-content: center; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+  @media print {
+    header.nav, .theme { display: none; }
+    .reveal { opacity: 1; transform: none; }
+    section { padding: 36px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Chirag Lohar<span>.</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <div class="eyebrow mono"><span class="dot"></span> Lead Software Engineer · KStar · Udaipur, India</div>
+    <h1>I build software<br>businesses <em>run on.</em></h1>
+    <p class="lede">
+      I'm <strong>Chirag Lohar</strong>. I lead engineering at KStar, where I take products from the first client call to production:
+      architecture, code, cloud, security and delivery. <strong>8+ years</strong> across compliance, healthcare, education, real estate and applied AI.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn ghost" href="mailto:chiraglohar75@gmail.com">chiraglohar75@gmail.com</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>8+</b><span>years building for the web</span></div>
+      <div class="stat"><b>22</b><span>modules in one school ERP</span></div>
+      <div class="stat"><b>21</b><span>real-estate portals on one codebase</span></div>
+      <div class="stat"><b>End-to-end</b><span>requirements → code → cloud → support</span></div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="head"><span class="num mono">01</span><h2>About</h2></div>
+      <div class="about">
+        <div class="reveal">
+          <p>I'm a full-stack engineer who is most useful when a product needs one person to own the whole thing. At KStar I am the technical lead for everything we ship: I talk to clients, turn what they need into a plan, design the system, write most of the code, run the cloud accounts and stay on for support.</p>
+          <p class="dim">My base is PHP/Laravel and React/TypeScript, with Next.js and Node for newer products. Over the last few years I have added a lot of applied AI: document review pipelines, chat assistants and model evaluation on AWS Bedrock, Claude and OpenAI. I care about the unglamorous parts too: tenant isolation, permissions, migrations that are safe to run, and bills that stay small.</p>
+          <p class="dim">Before KStar I spent three and a half years at TatvaSoft leading enterprise projects for international clients, and earlier built multi-portal products at a product company.</p>
+        </div>
+        <ul class="facts reveal">
+          <li><span>Role</span><span>Lead Software Engineer, KStar</span></li>
+          <li><span>Experience</span><span>8+ years (since 2018)</span></li>
+          <li><span>Core stack</span><span>Laravel · React · Next.js · AWS</span></li>
+          <li><span>Clients</span><span>UK, Canada, US, Middle East, India</span></li>
+          <li><span>Working style</span><span>100% remote</span></li>
+          <li><span>Languages</span><span>English, Hindi</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="head"><span class="num mono">02</span><h2>Selected work</h2></div>
+      <p class="sub">Products I designed and led at KStar, followed by earlier projects. Client names are left out where the work is under confidentiality.</p>
+
+      <div class="grid">
+
+        <article class="card wide reveal">
+          <div class="tag mono">KStar product · Education</div>
+          <h3>KStar School — school &amp; college management system</h3>
+          <p>A complete ERP that replaces registers, spreadsheets and five separate tools for a school. One sign-in for the office, teachers, parents and students, with every screen controlled by roles and permissions.</p>
+          <div class="metrics">
+            <div><b>22</b><span>modules</span></div>
+            <div><b>16</b><span>role types</span></div>
+            <div><b>155</b><span>database tables</span></div>
+            <div><b>238</b><span>pages</span></div>
+            <div><b>EN + HI</b><span>parent &amp; student portal</span></div>
+          </div>
+          <div class="cols">
+            <ul>
+              <li><strong>Academics:</strong> admissions pipeline, attendance on a phone, clash-free timetable, exams, marks, ranks, report cards, homework, lesson plans and an LMS.</li>
+              <li><strong>Fees:</strong> fee structures, counter collection, printed receipts, concessions, late fees, defaulter lists, day book and online payment through Razorpay.</li>
+              <li><strong>Operations:</strong> HR and payroll, library, transport, hostel, inventory, gate passes and biometric attendance devices (ZKTeco).</li>
+            </ul>
+            <ul>
+              <li><strong>Communication:</strong> SMS and WhatsApp alerts, in-app chat, notices, calendar and web push through an installable PWA.</li>
+              <li><strong>Scale-out:</strong> multi-branch groups with a branch switcher, a university module, a public website CMS per school and a mobile API.</li>
+              <li><strong>Quality:</strong> automated crawl of every page as every role (1,800+ requests, zero errors), audit log, backups and a self-resetting demo school.</li>
+            </ul>
+          </div>
+          <div class="chips">
+            <span class="chip">Next.js 14</span><span class="chip">TypeScript</span><span class="chip">MySQL</span><span class="chip">Drizzle ORM</span><span class="chip">Razorpay</span><span class="chip">WhatsApp Cloud API</span><span class="chip">PWA + Web Push</span><span class="chip">i18n</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">KStar product · Healthcare</div>
+          <h3>KStar Clinic — clinic management system</h3>
+          <p>Takes a clinic from a paper register to a live system: front desk, token queue, doctor screen, patient portal and a waiting-room TV.</p>
+          <ul>
+            <li><strong>Fee rules per doctor</strong> — new visit, follow-up and free revisit windows worked out automatically.</li>
+            <li>Vitals, typed or photographed prescriptions with "repeat last", and online booking with payment.</li>
+            <li>Owner dashboard across all doctors; patients sign in with phone + OTP; the TV shows tokens without exposing names.</li>
+            <li>39 end-to-end browser tests covering every role.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Next.js</span><span class="chip">MySQL</span><span class="chip">Drizzle</span><span class="chip">JWT auth</span><span class="chip">Puppeteer e2e</span>
+          </div>
+          <a class="link" href="https://clinic.kstarcapitals.com" target="_blank" rel="noopener">clinic.kstarcapitals.com →</a>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">KStar · Company platform</div>
+          <h3>kstarcapitals.com — website, CMS &amp; blog engine</h3>
+          <p>The company site and the admin behind it, built from scratch rather than on a template or WordPress.</p>
+          <ul>
+            <li>Service, outsourcing, app-development and accounting pages, portfolio and case studies.</li>
+            <li>Admin with roles, scheduled blog posts, media library, enquiries and subscribers.</li>
+            <li>SEO tooling in the editor: focus keyword, Google preview, checklist, redirects on slug change, structured data.</li>
+            <li>Also produced the brand kit, intro video and print-ready cards in code.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Next.js</span><span class="chip">Tailwind CSS</span><span class="chip">MySQL</span><span class="chip">SEO / JSON-LD</span><span class="chip">GA4</span>
+          </div>
+          <a class="link" href="https://kstarcapitals.com" target="_blank" rel="noopener">kstarcapitals.com →</a>
+        </article>
+
+        <article class="card wide reveal">
+          <div class="tag mono">KStar client work · Financial services · RegTech</div>
+          <h3>Governance, risk &amp; compliance platform for licensed financial firms</h3>
+          <p>A multi-tenant SaaS used by financial advice firms to run their compliance: obligations, incidents and breaches, attestations, tasks and registers. I own the platform end to end, from features to infrastructure and security.</p>
+          <div class="cols">
+            <ul>
+              <li><strong>Features:</strong> incident and breach workflows, an attestation builder, register exports, onboarding forms, subscription and user-limit rules, and super-admin tools.</li>
+              <li><strong>Security:</strong> led remediation of an external penetration test, fixed tenant-isolation and access-control issues, rolled out MFA and tightened token handling.</li>
+            </ul>
+            <ul>
+              <li><strong>Cloud:</strong> run the AWS estate (Elastic Beanstalk, Aurora MySQL, S3, Amplify, GuardDuty), patched critical runtime CVEs and cut the monthly bill with scheduling and right-sizing.</li>
+              <li><strong>Assurance:</strong> answer enterprise security questionnaires, support ISO 27001 work, and define backup, recovery (RTO/RPO) and data-residency controls.</li>
+            </ul>
+          </div>
+          <div class="chips">
+            <span class="chip">Laravel</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Aurora MySQL</span><span class="chip">AWS Elastic Beanstalk</span><span class="chip">Multi-tenancy</span><span class="chip">MFA</span><span class="chip">Pen-test remediation</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">KStar client work · Applied AI</div>
+          <h3>AI document review engine</h3>
+          <p>A pipeline that reads client files, pulls out structured facts, runs calculations and scores them against a compliance question set written by domain experts.</p>
+          <ul>
+            <li>OCR → fact extraction → calculated facts → per-question findings in plain language, with a PDF report.</li>
+            <li>Engine selectable per review (Claude models on AWS Bedrock), with cost and run time tracked for each run.</li>
+            <li>Versioned prompts and content, editable by non-developers through an admin screen.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">AWS Bedrock</span><span class="chip">Claude</span><span class="chip">Node.js</span><span class="chip">Fastify</span><span class="chip">PostgreSQL</span><span class="chip">Prompt engineering</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">KStar client work · Identity &amp; onboarding</div>
+          <h3>Professional credential passport</h3>
+          <p>A shared, verified profile that lets a financial professional be vetted once and onboarded by many organisations.</p>
+          <ul>
+            <li>Multi-stage questionnaires, attestations and organisation-specific reviews with consent-based sharing.</li>
+            <li>Automatic sync with public regulator data, scheduled jobs and reference checks.</li>
+            <li>Separate applicant, organisation and admin apps in one monorepo.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">React</span><span class="chip">Fastify</span><span class="chip">Drizzle</span><span class="chip">Supabase</span><span class="chip">Clerk</span><span class="chip">Vercel</span><span class="chip">Turborepo</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">Earlier · EdTech · UK</div>
+          <h3>Career development &amp; learning platform</h3>
+          <p>An AI-enabled platform connecting schools, colleges and professionals: role-based access, course creation, teacher–student collaboration, assessments and dashboards.</p>
+          <div class="chips">
+            <span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Laravel</span><span class="chip">OpenAI</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">Earlier · Real estate · Canada</div>
+          <h3>Real-estate marketplace — 21 portals</h3>
+          <p>Property listings and online bidding with a role-based CMS, managed across 21 agency portals from one system, with Rackspace integration.</p>
+          <div class="chips">
+            <span class="chip">Laravel</span><span class="chip">Multi-portal CMS</span><span class="chip">Bidding</span><span class="chip">Rackspace</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">Earlier · HR tech</div>
+          <h3>Video interview management system</h3>
+          <p>Candidates record interviews themselves; recruiters review and approve through a workflow. Secure storage on S3 and tuned RDS queries kept it fast as volume grew.</p>
+          <div class="chips">
+            <span class="chip">Laravel</span><span class="chip">AWS S3</span><span class="chip">RDS</span><span class="chip">Video</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="tag mono">Earlier · AI &amp; commerce</div>
+          <h3>AI chatbots and e-commerce builds</h3>
+          <p>Several business chat assistants on Next.js with OpenAI, Bedrock, Lambda and Supabase, plus a full e-commerce store with catalogue, cart, orders, reviews and secure payments.</p>
+          <div class="chips">
+            <span class="chip">Next.js</span><span class="chip">OpenAI GPT</span><span class="chip">AWS Lambda</span><span class="chip">Supabase</span><span class="chip">Payment gateways</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="head"><span class="num mono">03</span><h2>Experience</h2></div>
+
+      <div class="job reveal">
+        <div class="when mono">Oct 2025 — Present<br><span class="now">Current</span></div>
+        <div>
+          <h3>Lead Software Engineer</h3>
+          <div class="org">KStar Global Solutions (KStar Capitals) · Remote</div>
+          <ul>
+            <li><strong>Own engineering end to end</strong> — requirements, architecture, development, deployment, security and support for every KStar product and client project.</li>
+            <li>Designed and built <strong>KStar School</strong> (22-module ERP) and <strong>KStar Clinic</strong>, the company's two management-system products, plus the company website and CMS.</li>
+            <li>Technical lead for a <strong>financial-services compliance platform</strong>: features, penetration-test remediation, MFA, AWS operations and cost reduction.</li>
+            <li>Built an <strong>AI document review engine</strong> on AWS Bedrock and a credential-passport onboarding product on a modern TypeScript stack.</li>
+            <li>Work directly with client leadership: scoping, estimates, security questionnaires, incident response and release planning.</li>
+            <li>Set up the company's infrastructure — source control, hosting, DNS, email, CI deploys — and write proposals and fixed-price quotes for new clients.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when mono">Apr 2022 — Oct 2025</div>
+        <div>
+          <h3>Senior Software Engineer / Lead</h3>
+          <div class="org">TatvaSoft · Ahmedabad (Remote), India</div>
+          <ul>
+            <li>Led and delivered enterprise projects across EdTech, finance, real estate, e-commerce and AI.</li>
+            <li>Primary contact for international clients (UK, Canada, US) for requirements, solution architecture and delivery.</li>
+            <li>Architected applications with React, TypeScript, Next.js, Laravel, Aurora MySQL, AWS (EC2, S3, Lambda, RDS, Elastic Beanstalk) and OpenAI.</li>
+            <li>Mentored junior engineers and reviewed code for quality, security and performance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when mono">Oct 2019 — Apr 2022</div>
+        <div>
+          <h3>Software Developer</h3>
+          <div class="org">Cognus Technology · Udaipur, India</div>
+          <ul>
+            <li>Senior developer in a product company, working across the full development cycle.</li>
+            <li>Built an educational management system (Laravel + React), six academic-services portals with plagiarism, grammar and paraphrasing tools, and an internal admin portal with sales reporting, charts and chatbots.</li>
+            <li>Delivered a complete client portal in CakePHP 3; integrated many third-party APIs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when mono">Aug 2018 — Jul 2019</div>
+        <div>
+          <h3>Associate Developer</h3>
+          <div class="org">Fusion Business Solution Pvt. Ltd. · Udaipur, India</div>
+          <ul>
+            <li>Started my career in PHP web development on client projects.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when mono">Education</div>
+        <div>
+          <h3>B.Tech, Computer Science</h3>
+          <div class="org">Rajasthan Technical University (RTU), Kota, India</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="head"><span class="num mono">04</span><h2>Skills</h2></div>
+      <div class="skills">
+        <div class="skill reveal">
+          <h3>Backend</h3>
+          <div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">Fastify</span><span class="chip">CakePHP</span><span class="chip">CodeIgniter</span><span class="chip">REST APIs</span><span class="chip">Webhooks</span></div>
+        </div>
+        <div class="skill reveal">
+          <h3>Frontend</h3>
+          <div class="chips"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Tailwind CSS</span><span class="chip">PWA</span><span class="chip">i18n</span></div>
+        </div>
+        <div class="skill reveal">
+          <h3>Data</h3>
+          <div class="chips"><span class="chip">MySQL</span><span class="chip">Aurora</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">Drizzle ORM</span><span class="chip">Eloquent</span><span class="chip">Schema design</span></div>
+        </div>
+        <div class="skill reveal">
+          <h3>Cloud &amp; DevOps</h3>
+          <div class="chips"><span class="chip">AWS EC2</span><span class="chip">S3</span><span class="chip">Lambda</span><span class="chip">RDS</span><span class="chip">Elastic Beanstalk</span><span class="chip">Amplify</span><span class="chip">Vercel</span><span class="chip">Azure Container Apps</span><span class="chip">Cost optimisation</span></div>
+        </div>
+        <div class="skill reveal">
+          <h3>AI</h3>
+          <div class="chips"><span class="chip">AWS Bedrock</span><span class="chip">Claude</span><span class="chip">OpenAI GPT</span><span class="chip">Chatbots</span><span class="chip">Document extraction</span><span class="chip">Prompt design</span><span class="chip">Claude Code</span><span class="chip">Cursor</span></div>
+        </div>
+        <div class="skill reveal">
+          <h3>Security &amp; delivery</h3>
+          <div class="chips"><span class="chip">RBAC</span><span class="chip">Multi-tenancy</span><span class="chip">MFA</span><span class="chip">Pen-test remediation</span><span class="chip">Payment gateways</span><span class="chip">Client communication</span><span class="chip">Team leadership</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <h2>Have something to build?</h2>
+      <p>I'm happy to talk about a product, a rescue job on an existing system, or a lead engineering role. Email is the quickest way to reach me.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:chiraglohar75@gmail.com">Email me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/chirag-lohar-0409217b" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://kstarcapitals.com" target="_blank" rel="noopener">KStar Capitals</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Chirag Lohar</span>
+    <span class="mono">Udaipur, India · Working remotely worldwide</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    if (saved) root.setAttribute('data-theme', saved);
+
+    document.getElementById('theme').addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
